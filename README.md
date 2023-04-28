@@ -1,8 +1,10 @@
-# demo-elasticsearch
+# spring-boot-elasticsearch
 
 A sample spring boot application using spring-data-elasticsearch
 
-## Docker Compose - Builds and deploys Docker Containers
+The tests expect mongodb to be available. mongodb can be installed inside docker container as follows. Once mongo db is started inside docker, gradle will be able to build and the test will be successful.
+
+## Mongo DB in Docker using docker-compose.yml
 docker-compose.yml file can be used to build and manage multiple services in Docker containers. It currently deploys mongodb
 
 - https://docs.docker.com/compose/reference/overview/
