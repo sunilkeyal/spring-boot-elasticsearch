@@ -31,3 +31,28 @@ services:
       - elasticsearch
     networks:
       - mynetwork
+
+  grafana:
+    container_name: grafana
+    image: grafana/grafana:7.2.1
+    ports:
+      - 3000:3000
+    networks:
+      - mynetwork
+    volumes:
+      - grafana-storage:/var/lib/grafana
+
+
+  logstash:
+    container_name: logstash
+    image: docker.elastic.co/logstash/logstash:7.9.2
+    links:
+      - elasticsearch
+    volumes:
+      - ./logstash:/config-dir:ro
+      - /tmp/demo-logs:/demo-logs
+    command: logstash -f /config-dir/logstash.conf
+    depends_on:
+      - elasticsearch
+    networks:
+      - mynetwork
