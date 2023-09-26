@@ -2,8 +2,7 @@
 
 A sample spring boot application using spring-data-elasticsearch
 
-The tests expect elastic to be available. Elastic can be installed inside docker container as follows. 
-Once elastic is started inside docker, gradle will be able to build and the test will be successful.
+The tests expect elastic to be available. Once elastic is started inside docker, gradle will be able to build and the test will be successful.
 
 ## Install elastic search in docker using docker-compose.yml
 
@@ -13,5 +12,5 @@ Once elastic is started inside docker, gradle will be able to build and the test
 - docker-compose down (to stop and delete containers)
 
 
-# Grafana
+# Grafana (TODO)
 - source elasticsearch : http://elasticsearch:9200
