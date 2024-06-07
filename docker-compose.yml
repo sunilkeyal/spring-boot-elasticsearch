@@ -7,19 +7,20 @@ networks:
 services:
   elasticsearch:
     container_name: elasticsearch
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.13
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.14.0
     ports:
       - 9200:9200
       - 9300:9300
     environment:
       - discovery.type=single-node
       - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+      - xpack.security.enabled=false
     networks:
       - mynetwork
 
   kibana:
     container_name: kibana
-    image: docker.elastic.co/kibana/kibana:7.17.13
+    image: docker.elastic.co/kibana/kibana:8.14.0
     environment:
       - ELASTICSEARCH_URL=http://elasticsearch:9200
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
@@ -44,13 +45,13 @@ services:
 
   logstash:
     container_name: logstash
-    image: docker.elastic.co/logstash/logstash:7.17.13
+    image: docker.elastic.co/logstash/logstash:8.14.0
     links:
       - elasticsearch
     volumes:
       - ./logstash:/config-dir:ro
       - ./tmp/demo-logs:/demo-logs
-    command: logstash -f /config-dir/logstash.conf
+#    command: logstash -f /config-dir/logstash.conf
     depends_on:
       - elasticsearch
     networks:
